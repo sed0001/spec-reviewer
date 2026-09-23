@@ -1,0 +1,24 @@
+# spec-reviewer — сборка и запуск в Docker
+services:
+  spec-reviewer:
+    build: .
+    container_name: spec-reviewer
+    restart: unless-stopped
+    ports:
+      - "8040:8040"
+    env_file:
+      - .env
+    environment:
+      APP_HOST: "0.0.0.0"
+      APP_PORT: "8040"
+      # БД — в volume (данные и аудит переживают пересборку образа)
+      DATABASE_PATH: "/app/data/app.db"
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:8040/health', timeout=5)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s

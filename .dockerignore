@@ -1,0 +1,14 @@
+# Секреты и артефакты — не попадают в образ
+.env
+*.db
+*.db-journal
+logs/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.git/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spec-reviewer — ИИ-рецензент документов / ТЗ</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>ИИ-рецензент документов / ТЗ</h1>
+      <p class="subtitle">Сервис превращает текст ТЗ в структурированный отчёт: риски, вопросы заказчику, критерии приёмки.</p>
+    </div>
+    <div id="health" class="health">…</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="documents">Документы</button>
+    <button class="tab" data-tab="reviews">Рецензии</button>
+    <button class="tab" data-tab="view">Просмотр рецензии</button>
+  </nav>
+
+  <main>
+    <!-- ============ Раздел 1: Документы ============ -->
+    <section id="tab-documents" class="tab-panel active">
+      <h2>Документы</h2>
+      <form id="doc-form" class="card">
+        <div class="field">
+          <label for="doc-title">Название</label>
+          <input id="doc-title" name="title" required maxlength="500"
+                 placeholder="Например: ТЗ на форму заявки">
+        </div>
+        <div class="field">
+          <label for="doc-text">Текст ТЗ</label>
+          <textarea id="doc-text" name="text" required rows="8"
+                    placeholder="Вставьте текст технического задания…"></textarea>
+        </div>
+        <div class="form-actions">
+          <span id="doc-counter" class="hint">0 / 30000</span>
+          <button type="submit" class="btn btn-primary">Добавить документ</button>
+        </div>
+      </form>
+      <div id="doc-list" class="list card"><p class="empty">Загрузка…</p></div>
+    </section>
+
+    <!-- ============ Раздел 2: Рецензии ============ -->
+    <section id="tab-reviews" class="tab-panel">
+      <h2>Рецензии</h2>
+      <div id="review-list" class="list card"><p class="empty">Загрузка…</p></div>
+    </section>
+
+    <!-- ============ Раздел 3: Просмотр рецензии ============ -->
+    <section id="tab-view" class="tab-panel">
+      <div id="review-detail"><p class="empty">Выберите рецензию в списке.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>spec-reviewer · FastAPI + SQLite + LLM-цепочка A→B→C</span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

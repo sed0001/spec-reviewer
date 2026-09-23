@@ -1,0 +1,38 @@
+# =============================================================================
+# spec-reviewer — .gitignore (секреты и артефакты не коммитим)
+# =============================================================================
+
+# Секреты — только .env.example попадает в репозиторий
+.env
+*.env.local
+
+# Базы данных
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Docker volumes
+data/
+
+# Логи
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE / ОС
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

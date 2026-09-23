@@ -1,0 +1,246 @@
+/* spec-reviewer — веб-панель (статический фронтенд, без внешних библиотек) */
+
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --border: #dde3ee;
+  --text: #1f2733;
+  --muted: #6b7686;
+  --primary: #2f5fe0;
+  --primary-dark: #1f47b8;
+  --danger: #c62828;
+  --danger-bg: #fdecec;
+  --warning-bg: #fff4e0;
+  --ok-bg: #e6f4ea;
+  --high: #c62828;
+  --medium: #e07b00;
+  --low: #2e7d32;
+  --shadow: 0 1px 3px rgba(20, 40, 80, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* --- Шапка --- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 28px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar h1 { margin: 0; font-size: 22px; }
+.topbar .subtitle { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.health {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--ok-bg);
+  white-space: nowrap;
+}
+
+/* --- Вкладки --- */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 28px 0;
+  background: var(--bg);
+}
+.tab {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--card);
+  padding: 9px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--muted);
+}
+.tab.active {
+  color: var(--primary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary);
+}
+.tab:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+/* --- Контейнер --- */
+main {
+  padding: 18px 28px 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+h2 { margin: 4px 0 14px; font-size: 19px; }
+
+/* --- Карточки --- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.list { padding: 8px 16px; }
+.empty { color: var(--muted); text-align: center; padding: 14px 0; }
+
+.field { margin-bottom: 12px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+input, textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+input:focus, textarea:focus {
+  outline: 2px solid var(--primary);
+  border-color: var(--primary);
+}
+textarea { resize: vertical; min-height: 120px; }
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.hint { color: var(--muted); font-size: 12px; }
+
+/* --- Кнопки --- */
+.btn {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn:hover { background: #eef2fa; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-danger-ghost { color: var(--danger); }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+/* --- Элементы списков --- */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border);
+}
+.row:last-child { border-bottom: none; }
+.row .title { font-weight: 600; margin-bottom: 2px; }
+.row .meta { color: var(--muted); font-size: 12px; }
+.row .actions { display: flex; gap: 8px; white-space: nowrap; }
+
+/* --- Метки --- */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.badge-warning { background: var(--danger-bg); color: var(--danger); border: 1px solid #f2c1c1; }
+.badge-severity { padding: 2px 8px; }
+.severity-high { background: var(--danger-bg); color: var(--high); }
+.severity-medium { background: var(--warning-bg); color: var(--medium); }
+.severity-low { background: var(--ok-bg); color: var(--low); }
+.tag-confidence { font-size: 12px; color: var(--muted); }
+
+/* --- Блоки рецензии --- */
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.block { margin-top: 12px; }
+.block h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.block ul { margin: 0; padding-left: 20px; }
+.block li { margin-bottom: 4px; }
+.copy-strip {
+  background: #f7f9fd;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.copy-strip + .copy-strip { margin-top: 6px; }
+.risk-line { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.risk-line .badge-severity { margin-left: 0; flex: none; }
+.plain-line { margin: 0; padding: 10px 12px; background: #f7f9fd; border: 1px solid var(--border); border-radius: 8px; }
+
+.raw-block pre {
+  background: #10141c;
+  color: #cfe0ff;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.notice {
+  border: 1px solid #f2c1c1;
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.notice-error { background: #fdeaea; }
+.disclaimer { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+/* --- Подвал --- */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 18px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 720px) {
+  .topbar { flex-direction: column; align-items: flex-start; }
+  .row { flex-direction: column; align-items: flex-start; }
+  .row .actions { width: 100%; }
+}

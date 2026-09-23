@@ -1,0 +1,1 @@
+"""Пакет приложения spec-reviewer (FastAPI + LLM-цепочка)."""
