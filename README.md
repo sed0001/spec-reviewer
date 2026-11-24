@@ -210,3 +210,8 @@ for a in db.query(AuditRun).order_by(AuditRun.id.desc()).limit(20):
 - [ ] Кэширование повторных рецензий
 
 ---
+## Ссылки
+
+- Сайт-портфолио: https://craftstudio.run.place
+- Профиль GitHub: https://github.com/sed0001
+- Репозиторий: https://github.com/sed0001/spec-reviewer
